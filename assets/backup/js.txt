@@ -1,0 +1,28 @@
+var l = data.length;
+var s=8;
+var hr=[];
+var min=[];
+var start=[];
+var end=[];
+
+for(var i=0;i<l;i++){
+    hr[i]=s+(Math.floor(data[i].start/60));
+    min[i]=data[i].start%60;
+}
+
+for(i=0;i<l;i++){
+    start[i]=hr[i]+"."+min[i];
+}
+
+
+var h=0;
+for(var i=0;i<l;i++){
+    var div = document.createElement("div");
+    var br = document.createElement("br");
+    h=data[i].duration+"px";
+    div.style.height=h;
+    div.style.background="red";
+    div.textContent=start[i]+"_____"+data[i].title;
+    document.getElementById("main").appendChild(div);
+    document.getElementById("main").appendChild(br);
+}

@@ -1,0 +1,40 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: arial;
+}
+
+.schedule{
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.am{
+    margin-left: 10px;
+    font-size: 10px;
+    color: grey;
+}
+
+.outer{
+    display: flex;
+    position: relative;
+}
+
+.time{
+    margin-left: 50px;
+}
+
+.hour{
+    height: 30px;
+    box-sizing: border-box;
+}
+
+.half{
+    height: 30px;
+    font-size: 10px;
+    box-sizing: border-box;
+}
+
