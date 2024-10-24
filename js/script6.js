@@ -36,54 +36,49 @@ var data = [{
     title: "Push up branch"
 }
 ];
-
-
+var check=[], t, h;
 var l = data.length;
-var s=8;
-var hr=[];
-var min=[];
-var start=[];
-var end=[];
-
+for(var i=0;i<l;i++)
+    check[i]=1;
 for(var i=0;i<l;i++)
     for(var j=0;j<l-1-i;j++)
-        if(data[i].start>data[i+1].start){
-            t=data[i];
-            data[i]=data[i+1];
-            data[i+1]=t;
+        if(data[j].start>data[j+1].start){
+            t=data[j];
+            data[j]=data[j+1];
+            data[j+1]=t;
         }
-
-for(var i=0;i<l;i++){
-    hr[i]=s+(Math.floor(data[i].start/60));
-    min[i]=data[i].start%60;
+for(var i=0;i<l-1;i++){
+    if(data[i].start+data[i].duration>data[i+1].start){
+        check[i]=2;
+        check[i+1]=2;
+    }
 }
-
-for(i=0;i<l;i++){
-    start[i]=hr[i]+"."+min[i];
-}
-var t=0;
-var h=0;
-var flag=0;
+var flag=1;
 for(var i=0;i<l;i++){
     var div = document.createElement("div");
-    h=data[i].duration+"px";
-    div.style.position="absolute"
+    div.style.background="rgb(225, 236, 244)";
+    h=data[i].duration;
+    h+="px";
     div.style.height=h;
-    if(flag==0){
-        div.style.width="628px";
+    div.style.position="absolute";
+    div.textContent=data[i].title;
+    div.style.fontSize="10px";
+    div.classList.add("madeDiv");
+    t=data[i].start;
+    t+="px";
+    div.style.top=t;
+    if(check[i]==1){
+        div.style.width="1257px";
         flag=1;
     }
     else{
-        div.style.width="628px";
-        div.style.marginLeft="628px";
-        div.style.zIndex="1";
-        flag=0;
+        div.style.width="626px";
+        if(flag==1){
+            div.style.marginLeft="628px";
+            flag=0;
+        }
+        else
+            flag=1;
     }
-    div.style.background="rgb(225, 236, 244)";
-    div.style.border="1px solid rgb(218, 218, 218)";
-    div.style.fontSize="10px";
-    t=data[i].start+"px"
-    div.style.top=t;
-    div.textContent=data[i].title;
     document.getElementById("main").appendChild(div);
 }
